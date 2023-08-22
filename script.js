@@ -1,7 +1,8 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 // ----------
-let CharLength = 0;
+let charLength = 0;
+var charType = [0, 0, 0, 0];
 
 // Write password to the #password input
 function writePassword() {
@@ -15,6 +16,13 @@ function writePassword() {
 
 // Password Generating Code Block
 
+function charOption(){
+  charType[0] = confirm("Would you like into include Lowercase Letters?");
+  charType[1] = confirm("Would you like into include Uppercase Letters?");
+  charType[2] = confirm("Would you like into include Numbers?");
+  charType[3] = confirm("Would you like into include Special Characters?");
+}
+
 function generatePassword(){
  charLength = prompt("Please enter a number for your desired password length between 8 and 126 characters", "8-126");
  
@@ -23,7 +31,8 @@ function generatePassword(){
 } else if (charLength > 126) {
   alert('Your password is too large! Please type a number between 8 and 126');
 } else {
-  console.log(charLength);
+  charOption();
+  console.log(charType);
 }
 }
 // -------
