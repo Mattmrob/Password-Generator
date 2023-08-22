@@ -11,6 +11,7 @@ let slash = '/';
 let bracketleft = '[';
 let bracketright = ']'
 let specialChars = ["!",'"','#','$','%','&',"'",'(',')','*','+',',','-','.','/',':',';','<','=','>',',','?','@',"^","_",'`','{','|','}','~', bracketleft, bracketright, slash];
+let chosenCharacters = "";
 
 // let randomonium = 0;
 // Chartype 0 = lowercase, 1 = uppercase, 2 = numbers, 3 = special characters
@@ -33,9 +34,16 @@ function writePassword() {
 // int randomNum = randomonium.nextInt((max - min) + 1) + min;
 // }
 
-function testin() {
-  console.log(lowerCase + upperCase + numbers + specialChars);
+function generation() {
+ chosenCharacters = lowerCase.concat(upperCase, numbers, specialChars).join("");
+ charMax = chosenCharacters.length;
+
+ for (let i = 0; i < charLength; i++) {
+  console.log(chosenCharacters[i])
+ }
 }
+
+// TYPE SELECTION
 
 function charOption(){
   charType[0] = confirm("Would you like into include Lowercase Letters?");
@@ -80,7 +88,7 @@ specialChars = ["!",'"','#','$','%','&',"'",'(',')','*','+',',','-','.','/',':',
   alert('Your password is too large! Please type a number between 8 and 126');
 } else {
   charOption();
-  testin();
+  generation();
 }
 }
 // -------
