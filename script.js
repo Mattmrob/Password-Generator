@@ -30,18 +30,18 @@ function writePassword() {
 
 // Password Generating Code Block
 
-// function randomizer(){
-// int randomNum = randomonium.nextInt((max - min) + 1) + min;
-// }
-
 function generation() {
  chosenCharacters = lowerCase.concat(upperCase, numbers, specialChars).join("");
  charMax = chosenCharacters.length;
 
  for (let i = 0; i < charLength; i++) {
-  console.log(chosenCharacters[i])
+  console.log(chosenCharacters[i]);
  }
 }
+
+// https://medium.com/coding-at-dawn/how-to-convert-an-array-to-a-string-with-commas-in-javascript-79e212506c2
+
+// https://www.w3schools.com/java/java_math.asp
 
 // TYPE SELECTION
 
