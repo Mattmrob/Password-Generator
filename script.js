@@ -6,6 +6,7 @@ let charType = [0, 0, 0, 0];
 let lowerCase = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 let upperCase = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 let numbers = ['1','2','3','4','5','6','7','8','9','0'];
+const passWordMessage = ["Your password is: "]
 // slash and brackets need their own variables due to interfering with array structure, they are then listed in array
 let slash = '/';
 let bracketleft = '[';
@@ -30,14 +31,16 @@ function writePassword() {
 
 // Password Generating Code Block
 
-function generation() {
- chosenCharacters = lowerCase.concat(upperCase, numbers, specialChars).join("");
- charMax = chosenCharacters.length;
+// function generation() {
 
- for (let i = 0; i < charLength; i++) {
-  console.log(chosenCharacters[i]);
- }
-}
+//  chosenCharacters = lowerCase.concat(upperCase, numbers, specialChars);
+//  chosenCharacters.join("");
+//  charMax = chosenCharacters.length;
+
+//  for (let i = 0; i < charLength; i++) {
+//   console.log(chosenCharacters[i]);
+//  }
+// }
 
 // https://medium.com/coding-at-dawn/how-to-convert-an-array-to-a-string-with-commas-in-javascript-79e212506c2
 
@@ -45,31 +48,106 @@ function generation() {
 
 // TYPE SELECTION
 
+function combineArrays(a,b) {
+  chosenCharacters = a.concat(b);
+}
+
 function charOption(){
   charType[0] = confirm("Would you like into include Lowercase Letters?");
   charType[1] = confirm("Would you like into include Uppercase Letters?");
   charType[2] = confirm("Would you like into include Numbers?");
   charType[3] = confirm("Would you like into include Special Characters?");
 
-  if (charType[0] === false) {
-    lowerCase = '';
-  } else {
+  // all selected
+  if (charType[0] && charType[1] && charType[2] && charType[3]) {
+    chosenCharacters = passWordMessage.concat(lowerCase, upperCase, numbers, specialChars);
+    chosenCharacters.join("");
+  } 
+  
+  // 3 selected
+    else if (charType[0] && charType[1] && charType[2]) {
+    chosenCharacters = passWordMessage.concat(lowerCase, upperCase, numbers);
+    chosenCharacters.join("");
+  } else if (charType[0] && charType[1] && charType[3]) {
+    chosenCharacters = passWordMessage.concat(lowerCase, upperCase, specialChars);
+    chosenCharacters.join("");
+  } else if (charType[0] && charType[2] && charType[3]) {
+    chosenCharacters = passWordMessage.concat(lowerCase, numbers, specialChars);
+    chosenCharacters.join("");
+  } else if (charType[1] && charType[2] && charType[3]) {
+    chosenCharacters = passWordMessage.concat(upperCase, numbers, specialChars);
+    chosenCharacters.join("");
+  } 
+  
+  // 2 selected
+    else if (charType[0] && charType[1]) {
+    chosenCharacters = passWordMessage.concat(lowerCase, upperCase);
+    chosenCharacters.join("");
+  } else if (charType[0] && charType[2]) {
+    chosenCharacters = passWordMessage.concat(lowerCase, upperCase, specialChars);
+    chosenCharacters.join("");
+  } else if (charType[0] && charType[3]) {
+    chosenCharacters = passWordMessage.concat(lowerCase, specialChars);
+    chosenCharacters.join("");
+  } else if (charType[1] && charType[2]) {
+    chosenCharacters = passWordMessage.concat(upperCase, numbers,);
+    chosenCharacters.join("");
+  } else if (charType[1] && charType[3]) {
+    chosenCharacters = passWordMessage.concat(upperCase, specialChars);
+    chosenCharacters.join("");
+  } else if (charType[2] && charType[3]) {
+    chosenCharacters = passWordMessage.concat(numbers, specialChars);
+    chosenCharacters.join("");
+  } 
+  
+  // 1 selected
+    else if (charType[0]) {
+    chosenCharacters = passWordMessage.concat(lowerCase);
+    chosenCharacters.join("");
+  } else if (charType[1]) {
+    chosenCharacters = passWordMessage.concat(upperCase);
+    chosenCharacters.join("");
+  } else if (charType[2]) {
+    chosenCharacters = passWordMessage.concat(numbers);
+    chosenCharacters.join("");
+  } else if (charType[3]) {
+    chosenCharacters = passWordMessage.concat(specialChars);
+    chosenCharacters.join("");
+  } 
+
+  // error message
+     else {
+      alert('Please select at least one option!');
   }
 
-  if (charType[1] === false) {
-    upperCase = '';
-  } else {
-  }
 
-  if (charType[2] === false) {
-    numbers = '';
-  } else {
-  }
+  // if (charType[0] === true) {
+  //   combineArrays(passWordMessage, lowerCase)
+  //   chosenCharacters.join("");
+  // } else {
+  // }
 
-  if (charType[3] === false) {
-    specialChars = '';
-  } else {
-  }
+  // if (charType[1] === true) {
+  //   combineArrays(passWordMessage, upperCase)
+  //   chosenCharacters.join("");
+  // } else {
+  // }
+
+  // if (charType[2] === true) {
+  //   combineArrays(passWordMessage, numbers)
+  //   chosenCharacters.join("");
+  // } else {
+  // }
+
+  // if (charType[3] === true) {
+  //   combineArrays(passWordMessage, specialChars)
+  //   chosenCharacters.join("");
+  // } else {
+  // }
+
+  for (let i = 0; i < charLength; i++) {
+    console.log(chosenCharacters[i]);
+   }
 }
 
 function generatePassword(){
@@ -79,7 +157,6 @@ upperCase = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q'
 numbers = ['1','2','3','4','5','6','7','8','9','0'];
 specialChars = ["!",'"','#','$','%','&',"'",'(',')','*','+',',','-','.','/',':',';','<','=','>',',','?','@',"^","_",'`','{','|','}','~', bracketleft, bracketright, slash];
 
-
  charLength = prompt("Please enter a number for your desired password length between 8 and 126 characters", "8-126");
  
  if (charLength < 8) {
@@ -88,7 +165,7 @@ specialChars = ["!",'"','#','$','%','&',"'",'(',')','*','+',',','-','.','/',':',
   alert('Your password is too large! Please type a number between 8 and 126');
 } else {
   charOption();
-  generation();
+  // generation();
 }
 }
 // -------
