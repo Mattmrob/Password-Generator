@@ -33,14 +33,45 @@ function writePassword() {
 // int randomNum = randomonium.nextInt((max - min) + 1) + min;
 // }
 
+function testin() {
+  console.log(lowerCase + upperCase + numbers + specialChars);
+}
+
 function charOption(){
   charType[0] = confirm("Would you like into include Lowercase Letters?");
   charType[1] = confirm("Would you like into include Uppercase Letters?");
   charType[2] = confirm("Would you like into include Numbers?");
   charType[3] = confirm("Would you like into include Special Characters?");
+
+  if (charType[0] === false) {
+    lowerCase = '';
+  } else {
+  }
+
+  if (charType[1] === false) {
+    upperCase = '';
+  } else {
+  }
+
+  if (charType[2] === false) {
+    numbers = '';
+  } else {
+  }
+
+  if (charType[3] === false) {
+    specialChars = '';
+  } else {
+  }
 }
 
 function generatePassword(){
+
+lowerCase = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+upperCase = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+numbers = ['1','2','3','4','5','6','7','8','9','0'];
+specialChars = ["!",'"','#','$','%','&',"'",'(',')','*','+',',','-','.','/',':',';','<','=','>',',','?','@',"^","_",'`','{','|','}','~', bracketleft, bracketright, slash];
+
+
  charLength = prompt("Please enter a number for your desired password length between 8 and 126 characters", "8-126");
  
  if (charLength < 8) {
@@ -49,7 +80,7 @@ function generatePassword(){
   alert('Your password is too large! Please type a number between 8 and 126');
 } else {
   charOption();
-  console.log(charType);
+  testin();
 }
 }
 // -------
