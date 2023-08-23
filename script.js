@@ -14,6 +14,7 @@ let bracketright = ']'
 let specialChars = ["!",'"','#','$','%','&',"'",'(',')','*','+',',','-','.','/',':',';','<','=','>',',','?','@',"^","_",'`','{','|','}','~', bracketleft, bracketright, slash];
 let chosenCharacters = "";
 let randomvalue = Math.floor(Math.random() * charLength) + 1;
+let yourPassword = '';
 
 // let randomonium = 0;
 // Chartype 0 = lowercase, 1 = uppercase, 2 = numbers, 3 = special characters
@@ -25,7 +26,7 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
 
-  passwordText.value = password;
+  passwordText.value = yourPassword;
 
 }
 
@@ -126,9 +127,17 @@ function charOption(){
   }
 
   for (let i = 0; i < charLength; i++) {
-    randomvalue = Math.floor(Math.random() * chosenCharacters.length)+1;
-    console.log(chosenCharacters[randomvalue]);
+    randomValue = Math.floor(Math.random() * chosenCharacters.length)+1;
+    console.log(chosenCharacters[randomValue]);
+    
+    if (chosenCharacters[randomValue] == undefined) {
+      charLength = charLength + 1;
+    } else {
+      yourPassword = yourPassword + chosenCharacters[randomValue];
+    }
    }
+
+   console.log(yourPassword);
 }
 
 function generatePassword(){
@@ -137,6 +146,8 @@ lowerCase = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q'
 upperCase = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 numbers = ['1','2','3','4','5','6','7','8','9','0'];
 specialChars = ["!",'"','#','$','%','&',"'",'(',')','*','+',',','-','.','/',':',';','<','=','>',',','?','@',"^","_",'`','{','|','}','~', bracketleft, bracketright, slash];
+yourPassword = '';
+charLength = '';
 
  charLength = prompt("Please enter a number for your desired password length between 8 and 126 characters", "8-126");
  
@@ -146,7 +157,6 @@ specialChars = ["!",'"','#','$','%','&',"'",'(',')','*','+',',','-','.','/',':',
   alert('Your password is too large! Please type a number between 8 and 126');
 } else {
   charOption();
-  // generation();
 }
 }
 // -------
