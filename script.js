@@ -106,8 +106,27 @@ function charOption(){
   }
 
   let addition = passWordMessage.concat(lowerCase, upperCase, numbers, specialChars)
-  chosenCharacters = addition;
-  chosenCharacters.join("");
+  chosenCharacters = addition.join('');
+
+    // FOR BLOCK 
+  // After chosenCharacters have been decided, a for loop then uses a Math.random equation to generate a number between the user selected charLength and the minimum value, then stored to randomValue.
+  // randomValue is put in the index of chosenCharacters, which will randomly select an item from the chosenCharacters array
+  // Then an if statement runs in the for loop which determines is an undefined option is chosen, if so, it is not recorded and a new roll is performed.
+  // If the randomValue is not undefined, then it is added to yourPassword, the for loop repeats, and it continues until enough characters are chosen to match the desired user input.
+
+  for (let i = 0; i < charLength; i++) {
+    randomValue = Math.floor(Math.random() * chosenCharacters.length);
+    console.log(chosenCharacters[randomValue]);
+    
+    if (chosenCharacters[randomValue] == undefined || chosenCharacters[randomValue] == null) {
+      charLength = charLength + 1;
+    } else {
+      yourPassword = yourPassword + chosenCharacters[randomValue];
+    }
+   }
+
+   console.log(yourPassword);
+}
 
   // // all selected
   // if (charType[0] && charType[1] && charType[2] && charType[3]) {
@@ -170,26 +189,6 @@ function charOption(){
   //    else {
   //     alert('Please select at least one option!');
   // }
-
-  // FOR BLOCK 
-  // After chosenCharacters have been decided, a for loop then uses a Math.random equation to generate a number between the user selected charLength and the minimum value, then stored to randomValue.
-  // randomValue is put in the index of chosenCharacters, which will randomly select an item from the chosenCharacters array
-  // Then an if statement runs in the for loop which determines is an undefined option is chosen, if so, it is not recorded and a new roll is performed.
-  // If the randomValue is not undefined, then it is added to yourPassword, the for loop repeats, and it continues until enough characters are chosen to match the desired user input.
-
-  for (let i = 0; i < charLength; i++) {
-    randomValue = Math.floor(Math.random() * chosenCharacters.length);
-    console.log(chosenCharacters[randomValue]);
-    
-    if (chosenCharacters[randomValue] == undefined || chosenCharacters[randomValue] == "") {
-      charLength = charLength + 1;
-    } else {
-      yourPassword = yourPassword + chosenCharacters[randomValue];
-    }
-   }
-
-   console.log(yourPassword);
-}
 
 // Once finished, yourPassword, which is equal to the text contents of #password, will appear on the webpage!
 // -------
