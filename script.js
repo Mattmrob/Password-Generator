@@ -67,21 +67,12 @@ function generatePassword(){
   }
 }
 
-// Array Combination function - uses concat to combine selected options
-
-function combineArrays(a,b) {
-  chosenCharacters = a.concat(b);
-}
-
-// UNHOLY IF STATEMENT BLOCK --------------------------------
-// To the viewer looking at this code, please understand that I am aware there is most certainly, PROBABLY, a better way to do this, but this is how it ended it!
-// If you have any feedbackon how this could be done better, please let me know! There is no way this is efficient.
-
-// HOW IT WORKS: User receieves 4 confirms in order, each confirm is stored to an array of charType. Depending on selection, each array item becomes true or false.
-// If statements then check which ones are true and which ones are false FOR EVERY POSSIBLE COMBINATION OF THE 4 OPTIONS, each array item represents a character option.
-// Depending on which options were true (selected), passWordMessage receives the selected string arrays concat'ted to itself.
-// Those concat'ted items are then saved to chosenCharacters, and then .join'ed by an empty space, which replaces the commas between each array item with a void/empty non-space
-// There is also an error message if they say no to all 4 confirms
+// CHARACTER SELECTION AND PASSWORD GENERATION
+// charOption first runs a series of confirms to determine which characters you would like to include, each confirm t/f result is stored in an array
+// The values of the charType array should be associated with the following character types: 0 = lowercase, 1 = uppercase, 2 = numbers, 3 = specialcharacters
+// After selection, several if statements run, if a chartype is set to false, it will change the corresponding char type to an empty value
+// Then, all the chartypes are concat into the addition variable using the passwordmessage placeholder variable, if a type was unselected, it adds an empty space from the if statements
+// Finally, addition is .join 'd by an empty space, which sets the divider between each item in the addition array to an empty space (not a spacebar) - this is then all assigned to chosenCharacters
 
 function charOption(){
   charType[0] = confirm("Would you like into include Lowercase Letters?");
@@ -111,8 +102,8 @@ function charOption(){
     // FOR BLOCK 
   // After chosenCharacters have been decided, a for loop then uses a Math.random equation to generate a number between the user selected charLength and the minimum value, then stored to randomValue.
   // randomValue is put in the index of chosenCharacters, which will randomly select an item from the chosenCharacters array
-  // Then an if statement runs in the for loop which determines is an undefined option is chosen, if so, it is not recorded and a new roll is performed.
-  // If the randomValue is not undefined, then it is added to yourPassword, the for loop repeats, and it continues until enough characters are chosen to match the desired user input.
+  // Then an if statement runs in the for loop which determines is an undefined or null option is chosen, if so, it is not recorded and a new roll is performed and charlength is increase by 1 to meet the user desired length.
+  // If the randomValue is not undefined, it is added to yourPassword, the 'for loop' repeats, and it continues until enough characters are chosen to match the desired user input.
 
   for (let i = 0; i < charLength; i++) {
     randomValue = Math.floor(Math.random() * chosenCharacters.length);
@@ -128,71 +119,9 @@ function charOption(){
    console.log(yourPassword);
 }
 
-  // // all selected
-  // if (charType[0] && charType[1] && charType[2] && charType[3]) {
-  //   chosenCharacters = passWordMessage.concat(lowerCase, upperCase, numbers, specialChars);
-  //   chosenCharacters.join("");
-  // } 
-  
-  // // 3 selected
-  //   else if (charType[0] && charType[1] && charType[2]) {
-  //   chosenCharacters = passWordMessage.concat(lowerCase, upperCase, numbers);
-  //   chosenCharacters.join("");
-  // } else if (charType[0] && charType[1] && charType[3]) {
-  //   chosenCharacters = passWordMessage.concat(lowerCase, upperCase, specialChars);
-  //   chosenCharacters.join("");
-  // } else if (charType[0] && charType[2] && charType[3]) {
-  //   chosenCharacters = passWordMessage.concat(lowerCase, numbers, specialChars);
-  //   chosenCharacters.join("");
-  // } else if (charType[1] && charType[2] && charType[3]) {
-  //   chosenCharacters = passWordMessage.concat(upperCase, numbers, specialChars);
-  //   chosenCharacters.join("");
-  // } 
-  
-  // // 2 selected
-  //   else if (charType[0] && charType[1]) {
-  //   chosenCharacters = passWordMessage.concat(lowerCase, upperCase);
-  //   chosenCharacters.join("");
-  // } else if (charType[0] && charType[2]) {
-  //   chosenCharacters = passWordMessage.concat(lowerCase, upperCase, specialChars);
-  //   chosenCharacters.join("");
-  // } else if (charType[0] && charType[3]) {
-  //   chosenCharacters = passWordMessage.concat(lowerCase, specialChars);
-  //   chosenCharacters.join("");
-  // } else if (charType[1] && charType[2]) {
-  //   chosenCharacters = passWordMessage.concat(upperCase, numbers,);
-  //   chosenCharacters.join("");
-  // } else if (charType[1] && charType[3]) {
-  //   chosenCharacters = passWordMessage.concat(upperCase, specialChars);
-  //   chosenCharacters.join("");
-  // } else if (charType[2] && charType[3]) {
-  //   chosenCharacters = passWordMessage.concat(numbers, specialChars);
-  //   chosenCharacters.join("");
-  // } 
-  
-  // // 1 selected
-  //   else if (charType[0]) {
-  //   chosenCharacters = passWordMessage.concat(lowerCase);
-  //   chosenCharacters.join("");
-  // } else if (charType[1]) {
-  //   chosenCharacters = passWordMessage.concat(upperCase);
-  //   chosenCharacters.join("");
-  // } else if (charType[2]) {
-  //   chosenCharacters = passWordMessage.concat(numbers);
-  //   chosenCharacters.join("");
-  // } else if (charType[3]) {
-  //   chosenCharacters = passWordMessage.concat(specialChars);
-  //   chosenCharacters.join("");
-  // } 
-
-  // // error message
-  //    else {
-  //     alert('Please select at least one option!');
-  // }
-
 // Once finished, yourPassword, which is equal to the text contents of #password, will appear on the webpage!
-// -------
 
-// Add event listener to generate button
+
+// EVENT LISTENER - activates main code block when clicking on #password button
 generateBtn.addEventListener("click", writePassword);
 // ---------
