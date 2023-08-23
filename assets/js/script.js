@@ -35,10 +35,6 @@ function writePassword() {
 // passwordText selects #password which has a text value of yourPassword
 // writePassword is attached to an event listener
 
-// https://medium.com/coding-at-dawn/how-to-convert-an-array-to-a-string-with-commas-in-javascript-79e212506c2
-
-// https://www.w3schools.com/java/java_math.asp
-
 // PASSWORD GENERATOR ----- !!
 // This is the main function that runs when the user clicks on the generate password button
 // The function starts by resetting all values to their original states, then starts a prompt where user can enter their desired length
