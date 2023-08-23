@@ -13,6 +13,7 @@ let bracketleft = '[';
 let bracketright = ']'
 let specialChars = ["!",'"','#','$','%','&',"'",'(',')','*','+',',','-','.','/',':',';','<','=','>',',','?','@',"^","_",'`','{','|','}','~', bracketleft, bracketright, slash];
 let chosenCharacters = "";
+let randomvalue = Math.floor(Math.random() * charLength) + 1;
 
 // let randomonium = 0;
 // Chartype 0 = lowercase, 1 = uppercase, 2 = numbers, 3 = special characters
@@ -26,6 +27,10 @@ function writePassword() {
 
   passwordText.value = password;
 
+}
+
+function randomonium() {
+  Math.floor(Math.random() * charLength) + 1;
 }
 // ---------
 
@@ -120,33 +125,9 @@ function charOption(){
       alert('Please select at least one option!');
   }
 
-
-  // if (charType[0] === true) {
-  //   combineArrays(passWordMessage, lowerCase)
-  //   chosenCharacters.join("");
-  // } else {
-  // }
-
-  // if (charType[1] === true) {
-  //   combineArrays(passWordMessage, upperCase)
-  //   chosenCharacters.join("");
-  // } else {
-  // }
-
-  // if (charType[2] === true) {
-  //   combineArrays(passWordMessage, numbers)
-  //   chosenCharacters.join("");
-  // } else {
-  // }
-
-  // if (charType[3] === true) {
-  //   combineArrays(passWordMessage, specialChars)
-  //   chosenCharacters.join("");
-  // } else {
-  // }
-
   for (let i = 0; i < charLength; i++) {
-    console.log(chosenCharacters[i]);
+    randomvalue = Math.floor(Math.random() * chosenCharacters.length)+1;
+    console.log(chosenCharacters[randomvalue]);
    }
 }
 
