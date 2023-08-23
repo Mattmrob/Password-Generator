@@ -41,7 +41,9 @@ function writePassword() {
 
 // PASSWORD GENERATOR ----- !!
 // This is the main function that runs when the user clicks on the generate password button
-// The function starts by resetting all values to their original states, then starts a prompt
+// The function starts by resetting all values to their original states, then starts a prompt where user can enter their desired length
+// length prompt returns errors for if value is not a number, too short, or too long
+// If the entered value is as desired, run function charOption
 
 function generatePassword(){
 
@@ -52,9 +54,11 @@ function generatePassword(){
   yourPassword = '';
   charLength = '';
   
-   charLength = prompt("Please enter a number for your desired password length between 8 and 128 characters", "8-128");
+   charLength = prompt("Please enter a number for your desired password length between 8 and 128 characters");
    
-   if (charLength < 8) {
+   if (isNaN(charLength)) {
+    alert('Please enter a valid number!')
+   } else if (charLength < 8) {
     alert('Your password is too short! Please type a number between 8 and 128');
   } else if (charLength > 128) {
     alert('Your password is too large! Please type a number between 8 and 128');
@@ -85,67 +89,87 @@ function charOption(){
   charType[2] = confirm("Would you like into include Numbers?");
   charType[3] = confirm("Would you like into include Special Characters?");
 
-  // all selected
-  if (charType[0] && charType[1] && charType[2] && charType[3]) {
-    chosenCharacters = passWordMessage.concat(lowerCase, upperCase, numbers, specialChars);
-    chosenCharacters.join("");
-  } 
-  
-  // 3 selected
-    else if (charType[0] && charType[1] && charType[2]) {
-    chosenCharacters = passWordMessage.concat(lowerCase, upperCase, numbers);
-    chosenCharacters.join("");
-  } else if (charType[0] && charType[1] && charType[3]) {
-    chosenCharacters = passWordMessage.concat(lowerCase, upperCase, specialChars);
-    chosenCharacters.join("");
-  } else if (charType[0] && charType[2] && charType[3]) {
-    chosenCharacters = passWordMessage.concat(lowerCase, numbers, specialChars);
-    chosenCharacters.join("");
-  } else if (charType[1] && charType[2] && charType[3]) {
-    chosenCharacters = passWordMessage.concat(upperCase, numbers, specialChars);
-    chosenCharacters.join("");
-  } 
-  
-  // 2 selected
-    else if (charType[0] && charType[1]) {
-    chosenCharacters = passWordMessage.concat(lowerCase, upperCase);
-    chosenCharacters.join("");
-  } else if (charType[0] && charType[2]) {
-    chosenCharacters = passWordMessage.concat(lowerCase, upperCase, specialChars);
-    chosenCharacters.join("");
-  } else if (charType[0] && charType[3]) {
-    chosenCharacters = passWordMessage.concat(lowerCase, specialChars);
-    chosenCharacters.join("");
-  } else if (charType[1] && charType[2]) {
-    chosenCharacters = passWordMessage.concat(upperCase, numbers,);
-    chosenCharacters.join("");
-  } else if (charType[1] && charType[3]) {
-    chosenCharacters = passWordMessage.concat(upperCase, specialChars);
-    chosenCharacters.join("");
-  } else if (charType[2] && charType[3]) {
-    chosenCharacters = passWordMessage.concat(numbers, specialChars);
-    chosenCharacters.join("");
-  } 
-  
-  // 1 selected
-    else if (charType[0]) {
-    chosenCharacters = passWordMessage.concat(lowerCase);
-    chosenCharacters.join("");
-  } else if (charType[1]) {
-    chosenCharacters = passWordMessage.concat(upperCase);
-    chosenCharacters.join("");
-  } else if (charType[2]) {
-    chosenCharacters = passWordMessage.concat(numbers);
-    chosenCharacters.join("");
-  } else if (charType[3]) {
-    chosenCharacters = passWordMessage.concat(specialChars);
-    chosenCharacters.join("");
-  } 
-
-  // error message
-     else {
-      alert('Please select at least one option!');
+  if (!charType[0]) {
+    lowerCase = "";
   }
+
+  if (!charType[1]) {
+    upperCase = "";
+  }
+
+  if (!charType[2]) {
+    numbers = "";
+  }
+
+  if (!charType[3]) {
+    specialChars = "";
+  }
+
+  let addition = passWordMessage.concat(lowerCase, upperCase, numbers, specialChars)
+  chosenCharacters = addition;
+  chosenCharacters.join("");
+
+  // // all selected
+  // if (charType[0] && charType[1] && charType[2] && charType[3]) {
+  //   chosenCharacters = passWordMessage.concat(lowerCase, upperCase, numbers, specialChars);
+  //   chosenCharacters.join("");
+  // } 
+  
+  // // 3 selected
+  //   else if (charType[0] && charType[1] && charType[2]) {
+  //   chosenCharacters = passWordMessage.concat(lowerCase, upperCase, numbers);
+  //   chosenCharacters.join("");
+  // } else if (charType[0] && charType[1] && charType[3]) {
+  //   chosenCharacters = passWordMessage.concat(lowerCase, upperCase, specialChars);
+  //   chosenCharacters.join("");
+  // } else if (charType[0] && charType[2] && charType[3]) {
+  //   chosenCharacters = passWordMessage.concat(lowerCase, numbers, specialChars);
+  //   chosenCharacters.join("");
+  // } else if (charType[1] && charType[2] && charType[3]) {
+  //   chosenCharacters = passWordMessage.concat(upperCase, numbers, specialChars);
+  //   chosenCharacters.join("");
+  // } 
+  
+  // // 2 selected
+  //   else if (charType[0] && charType[1]) {
+  //   chosenCharacters = passWordMessage.concat(lowerCase, upperCase);
+  //   chosenCharacters.join("");
+  // } else if (charType[0] && charType[2]) {
+  //   chosenCharacters = passWordMessage.concat(lowerCase, upperCase, specialChars);
+  //   chosenCharacters.join("");
+  // } else if (charType[0] && charType[3]) {
+  //   chosenCharacters = passWordMessage.concat(lowerCase, specialChars);
+  //   chosenCharacters.join("");
+  // } else if (charType[1] && charType[2]) {
+  //   chosenCharacters = passWordMessage.concat(upperCase, numbers,);
+  //   chosenCharacters.join("");
+  // } else if (charType[1] && charType[3]) {
+  //   chosenCharacters = passWordMessage.concat(upperCase, specialChars);
+  //   chosenCharacters.join("");
+  // } else if (charType[2] && charType[3]) {
+  //   chosenCharacters = passWordMessage.concat(numbers, specialChars);
+  //   chosenCharacters.join("");
+  // } 
+  
+  // // 1 selected
+  //   else if (charType[0]) {
+  //   chosenCharacters = passWordMessage.concat(lowerCase);
+  //   chosenCharacters.join("");
+  // } else if (charType[1]) {
+  //   chosenCharacters = passWordMessage.concat(upperCase);
+  //   chosenCharacters.join("");
+  // } else if (charType[2]) {
+  //   chosenCharacters = passWordMessage.concat(numbers);
+  //   chosenCharacters.join("");
+  // } else if (charType[3]) {
+  //   chosenCharacters = passWordMessage.concat(specialChars);
+  //   chosenCharacters.join("");
+  // } 
+
+  // // error message
+  //    else {
+  //     alert('Please select at least one option!');
+  // }
 
   // FOR BLOCK 
   // After chosenCharacters have been decided, a for loop then uses a Math.random equation to generate a number between the user selected charLength and the minimum value, then stored to randomValue.
@@ -157,7 +181,7 @@ function charOption(){
     randomValue = Math.floor(Math.random() * chosenCharacters.length);
     console.log(chosenCharacters[randomValue]);
     
-    if (chosenCharacters[randomValue] == undefined) {
+    if (chosenCharacters[randomValue] == undefined || chosenCharacters[randomValue] == "") {
       charLength = charLength + 1;
     } else {
       yourPassword = yourPassword + chosenCharacters[randomValue];
