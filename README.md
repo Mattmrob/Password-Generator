@@ -10,14 +10,14 @@ N/A
 
 ## Usage
 
-The page can be found online through the following github pages link: -link here-
+The page can be found online through the following github pages link: https://mattmrob.github.io/Password-Generator/
 
 By clicking on the 'Generate Password' button, the user will be given a prompt asking for a numerical value between 8 and 128, when a correct value is input, they will then be presented 4 confirms asking for lowercase, uppercase, numbers, or special characters to include in the password generation. Once the user has selected at least 1 of the four confirm options, a password will be generated using random characters from the selected options at the user's desired length. This password is displayed directly on the page for the user to copy or save.
 
-![image](url here)
-![image](url here)
-![image](url here)
-![image](url here)
+![image](assets/imgs/passwordgen1.png)
+![image](assets/imgs/passwordgen2.png)
+![image](assets/imgs/passwordgen3.png)
+![image](assets/imgs/passwordgen4.png)
 
 ## Credits
 
